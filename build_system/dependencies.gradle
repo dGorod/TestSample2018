@@ -12,8 +12,8 @@ ext.config = [
 
         buildTools: "27.0.3",
         minSdk: 21,
-        targetSdk: 28,
-        compileSdk: 28,
+        targetSdk: "P",
+        compileSdk: "android-P",
 
         applicationId : "ua.dgorod.example",
         testApplicationId : "ua.dgorod.example.test",
@@ -22,7 +22,7 @@ ext.config = [
 
 ext.versions = [
         // main
-        supportLib: "1.0.0-alpha2",
+        supportLib: "1.0.0-alpha1",
         archLib: "2.0.0-alpha1",
         koin: "0.9.3",
         retrofit: "2.4.0",
