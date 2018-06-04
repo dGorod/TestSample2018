@@ -71,6 +71,7 @@ dependencies {
     //implementation archLibraries.runtime
     implementation archLibraries.extensions
     implementation archLibraries.paging
+    implementation archLibraries.pagingRxJava2
     implementation archLibraries.room
 
     implementation ktxLibraries.core

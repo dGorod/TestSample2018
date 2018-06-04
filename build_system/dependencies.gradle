@@ -48,6 +48,7 @@ ext.archLibraries = [
         extensions:         "androidx.lifecycle:lifecycle-extensions:$versions.archLib",
         compiler:           "androidx.lifecycle:lifecycle-compiler:$versions.archLib",
         paging:             "androidx.paging:paging-runtime:$versions.archLib",
+        pagingRxJava2:      "androidx.paging:paging-rxjava2:$versions.archLib",
         room:               "androidx.room:room-runtime:$versions.archLib",
         roomRxJava2:        "androidx.room:room-rxjava2:$versions.archLib",
         roomCompiler:       "androidx.room:room-compiler:$versions.archLib"
