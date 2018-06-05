@@ -10,6 +10,8 @@ import ua.dgorod.sample.domain.Mapper
 class UserDtoMapper: Mapper<UserDto, UserEntity> {
 
     override fun map(from: UserDto): UserEntity {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return with(from) {
+            UserEntity(id, name, avatarUrl, htmlUrl)
+        }
     }
 }

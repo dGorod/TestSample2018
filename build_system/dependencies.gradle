@@ -60,7 +60,7 @@ ext.ktxLibraries = [
 ]
 
 ext.libraries = [
-        koin:               "org.koin:koin-android:$versions.koin",
+        koin:               "org.koin:koin-androidx:1.0.0-alpha-11",
         koinViewModels:     "org.koin:koin-android-architecture:$versions.koin",
         rxJava2:            "io.reactivex.rxjava2:rxjava:2.1.14",
         rxAndroid:          "io.reactivex.rxjava2:rxandroid:2.0.2",

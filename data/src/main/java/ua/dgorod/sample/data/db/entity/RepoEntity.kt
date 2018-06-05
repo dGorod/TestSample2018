@@ -23,37 +23,45 @@ data class RepoEntity(
         @ColumnInfo(name = Field.id)
         var id: Long,
 
-        @ColumnInfo(name = Field.userId)
+        @ColumnInfo(name = Field.userId, index = true)
         var userId: Long,
 
-        @ColumnInfo
+        @ColumnInfo(name = Field.name)
         var name: String,
 
-        @ColumnInfo
+        @ColumnInfo(name = Field.fullName)
         var fullName: String,
 
-        @ColumnInfo
+        @ColumnInfo(name = Field.desc)
         var desc: String,
 
-        @ColumnInfo
+        @ColumnInfo(name = Field.htmlUrl)
         var htmlUrl: String,
 
-        @ColumnInfo
+        @ColumnInfo(name = Field.fork)
         var fork: Boolean,
 
-        @ColumnInfo
+        @ColumnInfo(name = Field.language)
         var language: String,
 
         @ColumnInfo(name = Field.stars, index = true)
         var stars: Int,
 
-        @ColumnInfo
+        @ColumnInfo(name = Field.createdAt)
         var createdAt: Date
 
 ) {
     object Field {
-        const val id = "id"
-        const val userId = "userId"
-        const val stars = "stars"
+        private const val prefix = "repository_"
+        const val id = "${prefix}id"
+        const val userId = "${prefix}userId"
+        const val name = "${prefix}name"
+        const val fullName = "${prefix}fullName"
+        const val desc = "${prefix}desc"
+        const val htmlUrl = "${prefix}htmlUrl"
+        const val fork = "${prefix}fork"
+        const val language = "${prefix}language"
+        const val stars = "${prefix}stars"
+        const val createdAt = "${prefix}createdAt"
     }
 }

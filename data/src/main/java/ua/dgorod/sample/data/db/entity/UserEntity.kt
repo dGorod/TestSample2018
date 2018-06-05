@@ -14,16 +14,20 @@ data class UserEntity(
         @ColumnInfo(name = Field.id)
         var id: Long,
 
-        @ColumnInfo
+        @ColumnInfo(name = Field.name)
         var name: String,
 
-        @ColumnInfo
+        @ColumnInfo(name = Field.avatarUrl)
         var avatarUrl: String,
 
-        @ColumnInfo
+        @ColumnInfo(name = Field.htmlUrl)
         var htmlUrl: String
 ) {
     object Field {
+        private const val prefix = "user_"
         const val id = "id"
+        const val name = "${prefix}name"
+        const val avatarUrl = "${prefix}avatarUrl"
+        const val htmlUrl = "${prefix}htmlUrl"
     }
 }

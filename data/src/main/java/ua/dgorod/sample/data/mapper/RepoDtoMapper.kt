@@ -10,6 +10,8 @@ import ua.dgorod.sample.domain.Mapper
 class RepoDtoMapper: Mapper<RepoDto, RepoEntity> {
 
     override fun map(from: RepoDto): RepoEntity {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return with(from) {
+            RepoEntity(id, owner.id, name, fullName, desc, htmlUrl, isFork, language, stars, createdAt)
+        }
     }
 }

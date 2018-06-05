@@ -7,7 +7,6 @@ import ua.dgorod.sample.data.db.Tables
 import ua.dgorod.sample.data.db.entity.RepoEntity
 import ua.dgorod.sample.data.db.entity.RepoInfoEntity
 import ua.dgorod.sample.data.db.entity.UserEntity
-import ua.dgorod.sample.domain.Const
 
 /**
  * Created by dgorodnytskyi on 6/4/18.
@@ -15,26 +14,30 @@ import ua.dgorod.sample.domain.Const
 @Dao
 interface RepoDao {
 
-    @Query("SELECT * FROM ${Tables.repositories} LIMIT")
-    fun getAll(page: Int): DataSource.Factory<Int, RepoEntity>
+    @Query("SELECT * FROM ${Tables.repositories} ORDER BY ${RepoEntity.Field.stars}")
+    fun getAll(): DataSource.Factory<Int, RepoEntity>
 
     @Query("SELECT * FROM ${Tables.repositories} WHERE ${RepoEntity.Field.id} = :id")
     fun get(id: Long): Maybe<RepoEntity>
 
     @Query("""
-        SELECT repo.*, user.*
+        SELECT ${Tables.repositories}.*, ${Tables.users}.*
         FROM ${Tables.repositories}
-        INNER JOIN ${Tables.users} ON repo.${RepoEntity.Field.userId} = user.${UserEntity.Field.id}
-        ORDER BY ${RepoEntity.Field.stars}
-        LIMIT ${Const.DEFAULT_PAGE_SIZE} OFFSET :page""")
-    fun getAllWithUsers(page: Int): DataSource.Factory<Int, RepoInfoEntity>
+        INNER JOIN ${Tables.users}
+            ON ${Tables.repositories}.${RepoEntity.Field.userId} = ${Tables.users}.${UserEntity.Field.id}
+        ORDER BY ${Tables.repositories}.${RepoEntity.Field.stars}""")
+    fun getAllWithUsers(): DataSource.Factory<Int, RepoInfoEntity>
 
     @Query("""
-        SELECT repo.*, user.*
+        SELECT ${Tables.repositories}.*, ${Tables.users}.*
         FROM ${Tables.repositories}
-        INNER JOIN ${Tables.users} ON repo.${RepoEntity.Field.userId} = user.${UserEntity.Field.id}
-        WHERE ${RepoEntity.Field.id} = :id""")
+        INNER JOIN ${Tables.users}
+            ON ${Tables.repositories}.${RepoEntity.Field.userId} = ${Tables.users}.${UserEntity.Field.id}
+        WHERE ${Tables.repositories}.${RepoEntity.Field.id} = :id""")
     fun getWithUser(id: Long): Maybe<RepoInfoEntity>
+
+    @Query("SELECT ${RepoEntity.Field.id} FROM ${Tables.repositories} ORDER BY ${RepoEntity.Field.stars}")
+    fun getAllIds(): List<Long>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(repos: List<RepoEntity>)
