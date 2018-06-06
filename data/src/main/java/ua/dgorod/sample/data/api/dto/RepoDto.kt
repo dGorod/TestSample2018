@@ -15,7 +15,7 @@ class RepoDto {
     val fullName: String = "n/a"
 
     @SerializedName("description")
-    val desc: String = ""
+    val desc: String? = null
 
     @SerializedName("owner")
     val owner: UserDto = UserDto()
@@ -27,7 +27,7 @@ class RepoDto {
     val isFork: Boolean = false
 
     @SerializedName("language")
-    val language: String = ""
+    val language: String? = null
 
     @SerializedName("stargazers_count")
     val stars: Int = 0

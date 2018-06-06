@@ -14,20 +14,18 @@ open class MainViewModel(private val repoSource: RepoInteractor): RxViewModel() 
 
     private val repoMapper = RepoUiMapper()
 
+    val emptyState: MutableLiveData<Boolean> = MutableLiveData()
     val loadingStatus: MutableLiveData<Boolean> = MutableLiveData()
     val reposList: MutableLiveData<Parcel<List<RepoUiModel>>> = MutableLiveData()
 
-    fun getRepositories(page: Int, firstLoad: Boolean = false) {
-        if (firstLoad && reposList.value?.content?.isNotEmpty() == true) {
-            // no need to load data again
-            return
-        }
-
+    fun getRepositories(page: Int) {
         disposable.add(repoSource.getAll(page)
-                .filter { it.isNotEmpty() }
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { loadingStatus.value = true }
-                .doOnNext { loadingStatus.value = false }
+                .doOnNext {
+                    loadingStatus.value = false
+                    emptyState.value = it.isEmpty()
+                }
                 .doOnError { Timber.e(it) }
                 .subscribe(
                         { reposList.value = Parcel.success(repoMapper.map(it)) },

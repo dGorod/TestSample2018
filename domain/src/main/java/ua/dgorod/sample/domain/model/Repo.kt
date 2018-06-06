@@ -9,10 +9,10 @@ data class Repo(
         val id: Long,
         val name: String,
         val fullName: String,
-        val desc: String,
+        val desc: String?,
         val owner: User,
         val htmlUrl: String,
         val isFork: Boolean,
-        val language: String,
+        val language: String?,
         val createdAt: Date = Date(0)
 )

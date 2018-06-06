@@ -11,9 +11,9 @@ data class RepoUiModel(
         val id: Long,
         val name: String,
         val fullName: String,
-        val desc: String,
+        val desc: String?,
         val owner: UserUiModel,
         val htmlUrl: String,
         val isFork: Boolean,
-        val language: String
+        val language: String?
 ) : Parcelable

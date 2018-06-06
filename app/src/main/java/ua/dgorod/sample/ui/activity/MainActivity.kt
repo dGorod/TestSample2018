@@ -19,7 +19,6 @@ import ua.dgorod.sample.viewmodel.Parcel
 class MainActivity : AppCompatActivity() {
 
     private val viewModel: MainViewModel by viewModel()
-    private val layoutManager = GridLayoutManager(this, 2)
 
     private lateinit var adapter: RepoAdapter
 
@@ -28,9 +27,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         with(viewModel) {
-            getRepositories(0, true)
+            getRepositories(1)
+            emptyState.observe(this@MainActivity, emptyObserver)
             loadingStatus.observe(this@MainActivity, loadingObserver)
-            reposList.observe(this@MainActivity, photosListObserver)
+            reposList.observe(this@MainActivity, reposObserver)
         }
     }
 
@@ -39,34 +39,28 @@ class MainActivity : AppCompatActivity() {
 
         adapter = RepoAdapter(itemClickListener)
 
-        vRepos.layoutManager = layoutManager
+        vRepos.layoutManager = GridLayoutManager(this, 2)
         vRepos.adapter = adapter
     }
 
-    private val loadingObserver = object : Observer<Boolean> {
-        override fun onChanged(status: Boolean?) {
-            vProgress.visibility = if (status == true) View.VISIBLE else View.INVISIBLE
-        }
+    private val emptyObserver = Observer<Boolean> { isEmpty ->
+        vEmpty.visibility = if (isEmpty == true) View.VISIBLE else View.GONE
     }
 
-    private val photosListObserver = object : Observer<Parcel<List<RepoUiModel>>> {
-        override fun onChanged(data: Parcel<List<RepoUiModel>>?) {
-            when (data?.status) {
-                Parcel.Status.SUCCESS -> {
-                    data.content?.let {
-                        adapter.submitList(it as PagedList<RepoUiModel>)
-                        adapter.notifyDataSetChanged() //TODO: optimize for proper notifications
-                        vEmpty.visibility = if (it.isEmpty()) View.VISIBLE else View.GONE
-                    }
-                }
-                Parcel.Status.ERROR -> longToast(R.string.error_general)
-            }
+    private val loadingObserver = Observer<Boolean> { isLoading ->
+        vProgress.visibility = if (isLoading == true) View.VISIBLE else View.INVISIBLE
+    }
+
+    private val reposObserver = Observer<Parcel<List<RepoUiModel>>> { data ->
+        when (data?.status) {
+            Parcel.Status.SUCCESS -> adapter.submitList(data.content as PagedList<RepoUiModel>)
+            Parcel.Status.ERROR -> longToast(R.string.error_general)
         }
     }
 
     private val itemClickListener: (View) -> Unit = {
         val index = vRepos.getChildAdapterPosition(it)
-        val photoView = it.findViewById(R.id.vAvatar) as ImageView
+        val repoView = it.findViewById(R.id.vAvatar) as ImageView
         //DetailsActivity.start(this, adapter.data.elementAt(index), photoView)
     }
 }

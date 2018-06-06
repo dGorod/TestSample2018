@@ -6,6 +6,6 @@ package ua.dgorod.sample.domain.model
 data class User(
         val id: Long,
         val name: String,
-        val avatarUrl: String,
+        val avatarUrl: String?,
         val htmlUrl: String
 )

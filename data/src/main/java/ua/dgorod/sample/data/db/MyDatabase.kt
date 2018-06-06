@@ -14,7 +14,7 @@ import ua.dgorod.sample.data.db.entity.UserEntity
 /**
  * Created by dgorodnytskyi on 6/4/18.
  */
-@Database(entities = [RepoEntity::class, UserEntity::class], version = 1)
+@Database(entities = [RepoEntity::class, UserEntity::class], version = 2)
 @TypeConverters(DateConverter::class)
 abstract class MyDatabase: RoomDatabase() {
 

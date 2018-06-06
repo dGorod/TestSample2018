@@ -18,7 +18,7 @@ data class UserEntity(
         var name: String,
 
         @ColumnInfo(name = Field.avatarUrl)
-        var avatarUrl: String,
+        var avatarUrl: String?,
 
         @ColumnInfo(name = Field.htmlUrl)
         var htmlUrl: String

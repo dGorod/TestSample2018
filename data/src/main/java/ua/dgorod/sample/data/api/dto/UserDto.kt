@@ -14,7 +14,7 @@ class UserDto {
     val name: String = "n/a"
 
     @SerializedName("avatar_url")
-    val avatarUrl: String = "n/a"
+    val avatarUrl: String? = null
 
     @SerializedName("html_url")
     val htmlUrl: String = "n/a"

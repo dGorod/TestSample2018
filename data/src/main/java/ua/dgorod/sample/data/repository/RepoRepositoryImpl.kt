@@ -1,5 +1,8 @@
 package ua.dgorod.sample.data.repository
 
+import android.os.AsyncTask
+import android.os.Handler
+import android.os.Looper
 import androidx.paging.PagedList
 import androidx.paging.RxPagedListBuilder
 import io.reactivex.BackpressureStrategy
@@ -34,9 +37,12 @@ class RepoRepositoryImpl(
     override fun getAll(page: Int): Flowable<List<Repo>> {
         val pageSize = Const.DEFAULT_PAGE_SIZE
         val boundary = RepoBoundaryCallback(pageSize)
-        val localSource = db.repositories().getAllWithUsers()
+        val config = PagedList.Config.Builder()
+                .setEnablePlaceholders(true)
+                .setPageSize(pageSize)
+                .build()
 
-        return RxPagedListBuilder(localSource, pageSize)
+        return RxPagedListBuilder(db.repositories().getAllWithUsers(), config)
                 .setInitialLoadKey(page)
                 .setBoundaryCallback(boundary)
                 .buildFlowable(BackpressureStrategy.LATEST)
@@ -54,8 +60,10 @@ class RepoRepositoryImpl(
         override fun onZeroItemsLoaded() { makeNetworkCall(1) }
 
         override fun onItemAtEndLoaded(itemAtEnd: RepoInfoEntity) {
-            val position = db.repositories().getAllIds().indexOf(itemAtEnd.repo.id)
-            makeNetworkCall(position / pageSize)
+            Thread(Runnable {
+                val position = db.repositories().getAllIds().indexOf(itemAtEnd.repo.id)
+                makeNetworkCall((position / pageSize) + 1)
+            }).start()
         }
 
         fun cancel() { networkCall?.dispose() }
@@ -69,8 +77,9 @@ class RepoRepositoryImpl(
                             { dto ->
                                 db.runInTransaction {
                                     dto.items.forEach { repo ->
-                                        db.repositories().insert(repoDtoMapper.map(repo))
+                                        // User first because of foreign key constraint.
                                         db.users().insert(userDtoMapper.map(repo.owner))
+                                        db.repositories().insert(repoDtoMapper.map(repo))
                                     }
                                 }
                             },

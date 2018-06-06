@@ -10,6 +10,6 @@ import kotlinx.android.parcel.Parcelize
 data class UserUiModel(
         val id: Long,
         val name: String,
-        val avatarUrl: String,
+        val avatarUrl: String?,
         val htmlUrl: String
 ) : Parcelable

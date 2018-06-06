@@ -33,7 +33,7 @@ data class RepoEntity(
         var fullName: String,
 
         @ColumnInfo(name = Field.desc)
-        var desc: String,
+        var desc: String?,
 
         @ColumnInfo(name = Field.htmlUrl)
         var htmlUrl: String,
@@ -42,7 +42,7 @@ data class RepoEntity(
         var fork: Boolean,
 
         @ColumnInfo(name = Field.language)
-        var language: String,
+        var language: String?,
 
         @ColumnInfo(name = Field.stars, index = true)
         var stars: Int,
