@@ -21,5 +21,12 @@
         </activity>
 
 
+        <activity
+            android:name=".ui.activity.DetailsActivity"
+            android:parentActivityName=".ui.activity.MainActivity"/>
+
+        <activity
+            android:name=".ui.activity.AboutActivity"
+            android:parentActivityName=".ui.activity.MainActivity" />
     </application>
 </manifest>

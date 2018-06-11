@@ -9,5 +9,14 @@
     <string name="error_general">Oops! Something went wrong.</string>
     <string name="error_no_data">No data.</string>
 
+    <!-- MainActivity -->
+    <string name="about">About</string>
 
+    <!-- DetailsActivity -->
+    <string name="author">Author: %s</string>
+    <string name="repo_url">Repository URL</string>
+    <string name="share_this">Share this</string>
+
+    <!-- AboutActivity -->
+    <string name="about_app">This is some sample app.\n\n&#169;Dmytro Gorodnytskyi\n2018</string>
 </resources>

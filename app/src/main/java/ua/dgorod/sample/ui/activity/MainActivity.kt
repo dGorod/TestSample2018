@@ -1,6 +1,9 @@
 package ua.dgorod.sample.ui.activity
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
@@ -46,6 +49,21 @@ class MainActivity : AppCompatActivity() {
         vRepos.adapter = adapter
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        return when(item?.itemId) {
+            R.id.menu_about -> {
+                startActivity(Intent(this, AboutActivity::class.java))
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
     private val emptyObserver = Observer<Boolean> { isEmpty ->
         vEmpty.visibility = if (isEmpty == true) View.VISIBLE else View.GONE
     }
@@ -71,6 +89,6 @@ class MainActivity : AppCompatActivity() {
     private val itemClickListener: (View) -> Unit = {
         val index = vRepos.getChildAdapterPosition(it)
         val repoView = it.findViewById(R.id.vAvatar) as ImageView
-        //DetailsActivity.start(this, adapter.getElement(index), repoView)
+        DetailsActivity.start(this, adapter.getElement(index), repoView)
     }
 }
