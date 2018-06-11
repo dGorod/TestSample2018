@@ -1,4 +1,4 @@
-[Aplha]
+[Aplha]<br/>
 Project built using Android Studio Canary and AndroidX alpha artifacts.
 
 
@@ -36,6 +36,6 @@ App is a simple client for GitHub API that shows list of popular repositories ab
  - Write more tests
 
 ### Author
-Dmytro Gorodnytskyi
-2018
+Dmytro Gorodnytskyi<br/>
+2018<br/>
 MIT License
