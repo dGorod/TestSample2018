@@ -44,7 +44,6 @@ ext.googleLibraries = [
 ]
 
 ext.archLibraries = [
-        //runtime:            "androidx.lifecycle:lifecycle-runtime:$versions.archLib",
         extensions:         "androidx.lifecycle:lifecycle-extensions:$versions.archLib",
         compiler:           "androidx.lifecycle:lifecycle-compiler:$versions.archLib",
         paging:             "androidx.paging:paging-runtime:$versions.archLib",

@@ -19,7 +19,7 @@ open class MainViewModel(private val repoSource: RepoInteractor): RxViewModel() 
     val reposList: MutableLiveData<Parcel<List<RepoUiModel>>> = MutableLiveData()
 
     fun getRepositories(page: Int) {
-        disposable.add(repoSource.getAll(page)
+        disposable.add(repoSource.getAll(page + 1)
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { loadingStatus.value = true }
                 .doOnNext {

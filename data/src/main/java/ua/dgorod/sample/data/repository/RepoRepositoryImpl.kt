@@ -1,20 +1,11 @@
 package ua.dgorod.sample.data.repository
 
-import android.os.AsyncTask
-import android.os.Handler
-import android.os.Looper
-import androidx.paging.PagedList
-import androidx.paging.RxPagedListBuilder
-import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
 import io.reactivex.Maybe
-import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
 import ua.dgorod.sample.data.api.ApiInterface
-import ua.dgorod.sample.data.api.dto.RepoDto
 import ua.dgorod.sample.data.db.MyDatabase
-import ua.dgorod.sample.data.db.entity.RepoInfoEntity
 import ua.dgorod.sample.data.mapper.RepoDtoMapper
 import ua.dgorod.sample.data.mapper.RepoEntityMapper
 import ua.dgorod.sample.data.mapper.UserDtoMapper
@@ -35,56 +26,25 @@ class RepoRepositoryImpl(
     private val entityMapper = RepoEntityMapper()
 
     override fun getAll(page: Int): Flowable<List<Repo>> {
-        val pageSize = Const.DEFAULT_PAGE_SIZE
-        val boundary = RepoBoundaryCallback(pageSize)
-        val config = PagedList.Config.Builder()
-                .setEnablePlaceholders(true)
-                .setPageSize(pageSize)
-                .build()
-
-        return RxPagedListBuilder(db.repositories().getAllWithUsers(), config)
-                .setInitialLoadKey(page)
-                .setBoundaryCallback(boundary)
-                .buildFlowable(BackpressureStrategy.LATEST)
+        val networkCall = api.getRepositories("android created:>2016-01-01 stars:>100", page = page)
                 .subscribeOn(Schedulers.io())
-                .doOnTerminate { boundary.cancel() }
+                .subscribe(
+                        { dto ->
+                            db.runInTransaction {
+                                dto.items.forEach { repo ->
+                                    // User first because of foreign key constraint.
+                                    db.users().insert(userDtoMapper.map(repo.owner))
+                                    db.repositories().insert(repoDtoMapper.map(repo))
+                                }
+                            }
+                        },
+                        { Timber.e(it) }
+                )
+
+        return db.repositories().getAllWithUsers()
                 .map { entityMapper.map(it) }
+                .doOnTerminate { networkCall.dispose() }
     }
 
     override fun get(id: Long): Maybe<Repo> = db.repositories().getWithUser(id).map { entityMapper.map(it) }
-
-    inner class RepoBoundaryCallback(private val pageSize: Int) : PagedList.BoundaryCallback<RepoInfoEntity>() {
-
-        private var networkCall: Disposable? = null
-
-        override fun onZeroItemsLoaded() { makeNetworkCall(1) }
-
-        override fun onItemAtEndLoaded(itemAtEnd: RepoInfoEntity) {
-            Thread(Runnable {
-                val position = db.repositories().getAllIds().indexOf(itemAtEnd.repo.id)
-                makeNetworkCall((position / pageSize) + 1)
-            }).start()
-        }
-
-        fun cancel() { networkCall?.dispose() }
-
-        private fun makeNetworkCall(page: Int) {
-            networkCall?.dispose()
-
-            networkCall = api.getRepositories("android created:>2016-01-01 stars:>100", page = page)
-                    .subscribeOn(Schedulers.io())
-                    .subscribe(
-                            { dto ->
-                                db.runInTransaction {
-                                    dto.items.forEach { repo ->
-                                        // User first because of foreign key constraint.
-                                        db.users().insert(userDtoMapper.map(repo.owner))
-                                        db.repositories().insert(repoDtoMapper.map(repo))
-                                    }
-                                }
-                            },
-                            { Timber.e(it) }
-                    )
-        }
-    }
 }

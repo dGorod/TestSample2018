@@ -39,14 +39,6 @@ class RepoViewHolder(
         }
     }
 
-    fun clear() {
-        with(itemView) {
-            vName.text = "loading..."
-            vAuthor.text = null
-            vAvatar.setImageResource(R.drawable.ic_cloud_off_24dp)
-        }
-    }
-
     private val photoLoadingCallback = object: Callback {
         override fun onSuccess() {
             itemView.vAvatar.scaleType = ImageView.ScaleType.CENTER_CROP

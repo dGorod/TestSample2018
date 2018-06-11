@@ -47,8 +47,6 @@ dependencies {
 
     implementation archLibraries.room
     implementation archLibraries.roomRxJava2
-    implementation archLibraries.paging
-    implementation archLibraries.pagingRxJava2
 
     implementation libraries.koin
     implementation libraries.rxJava2

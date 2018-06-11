@@ -2,8 +2,8 @@ package ua.dgorod.sample.ui.adapter
 
 import android.view.View
 import android.view.ViewGroup
-import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import ua.dgorod.sample.model.RepoUiModel
 import ua.dgorod.sample.ui.adapter.viewholder.RepoViewHolder
 
@@ -12,7 +12,7 @@ import ua.dgorod.sample.ui.adapter.viewholder.RepoViewHolder
  */
 class RepoAdapter(
         private val clickListener: (View) -> Unit
-) : PagedListAdapter<RepoUiModel, RepoViewHolder>(DIFF_CALLBACK) {
+) : ListAdapter<RepoUiModel, RepoViewHolder>(DIFF_CALLBACK) {
 
     companion object {
         private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<RepoUiModel>() {
@@ -31,6 +31,8 @@ class RepoAdapter(
     }
 
     override fun onBindViewHolder(holder: RepoViewHolder, position: Int) {
-        getItem(position)?.let { holder.bind(it) } ?: holder.clear()
+        holder.bind(getItem(position))
     }
+
+    fun getElement(position: Int): RepoUiModel = getItem(position)
 }
