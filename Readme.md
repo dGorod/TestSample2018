@@ -1,4 +1,4 @@
-[Aplha]<br/>
+[Alpha]<br/>
 Project built using Android Studio Canary and AndroidX alpha artifacts.
 
 
