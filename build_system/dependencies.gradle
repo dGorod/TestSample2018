@@ -10,10 +10,10 @@ ext.config = [
         code: appVersion.major * 10000 + appVersion.minor * 1000 + appVersion.patch * 100 + appVersion.build,
         version: "$appVersion.major.$appVersion.minor.$appVersion.patch",
 
-        buildTools: "27.0.3",
+        buildTools: "28.0.1",
         minSdk: 21,
-        targetSdk: "P",
-        compileSdk: "android-P",
+        targetSdk: 28,
+        compileSdk: 28,
 
         applicationId : "ua.dgorod.example",
         testApplicationId : "ua.dgorod.example.test",
@@ -59,7 +59,8 @@ ext.ktxLibraries = [
 ]
 
 ext.libraries = [
-        koin:               "org.koin:koin-androidx:1.0.0-alpha-11",
+        // about JetPack support for Koin: https://github.com/InsertKoinIO/koin/issues/144
+        koin:               "org.koin:koin-android:1.0.0-beta-2",
         koinViewModels:     "org.koin:koin-android-architecture:$versions.koin",
         rxJava2:            "io.reactivex.rxjava2:rxjava:2.1.14",
         rxAndroid:          "io.reactivex.rxjava2:rxandroid:2.0.2",
