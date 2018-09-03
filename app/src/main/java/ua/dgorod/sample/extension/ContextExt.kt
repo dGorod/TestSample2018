@@ -6,4 +6,4 @@ import android.widget.Toast
 /**
  * Created by dgorodnytskyi on 6/5/18.
  */
-inline fun Context.longToast(message: Int) = Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+fun Context.longToast(message: Int) = Toast.makeText(this, message, Toast.LENGTH_LONG).show()

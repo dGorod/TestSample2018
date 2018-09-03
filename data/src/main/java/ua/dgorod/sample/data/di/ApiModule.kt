@@ -4,7 +4,7 @@ import android.content.Context
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import okhttp3.logging.HttpLoggingInterceptor.Level
-import org.koin.android.ext.android.androidApplication
+import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module.Module
 import org.koin.dsl.module.module
 import retrofit2.Retrofit
@@ -47,8 +47,8 @@ val apiModule: Module = module {
                 .create(ApiInterface::class.java)
     }
 
-    bean { getHttpClient() }
+    single { getHttpClient() }
 
-    bean { getWebService(androidApplication(), get()) }
+    single { getWebService(androidContext(), get()) }
 }
 

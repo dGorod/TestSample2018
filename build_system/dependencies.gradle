@@ -24,13 +24,13 @@ ext.versions = [
         // main
         supportLib: "1.0.0-alpha1",
         archLib: "2.0.0-alpha1",
-        koin: "0.9.3",
+        koin: "1.0.0-beta-7",
         retrofit: "2.4.0",
         // testing
         supportTestLib: "1.1.0-alpha1",
         mockito: "2.13.0",
         // developing
-        leakCanary: "1.5.4",
+        leakCanary: "1.6.1",
         blockCanary: "1.5.0"
 ]
 
@@ -38,7 +38,7 @@ ext.googleLibraries = [
         appCompat:          "androidx.appcompat:appcompat:$versions.supportLib",
         coreUtils:          "androidx.legacy:legacy-support-core-utils:$versions.supportLib",
         annotations:        "androidx.annotation:annotation:$versions.supportLib",
-        constraintLayout:   "androidx.constraintlayout:constraintlayout:1.1.0",
+        constraintLayout:   "androidx.constraintlayout:constraintlayout:1.1.2",
         recyclerView:       "androidx.recyclerview:recyclerview:$versions.supportLib",
         design:             "com.google.android.material:material:$versions.supportLib"
 ]
@@ -59,11 +59,10 @@ ext.ktxLibraries = [
 ]
 
 ext.libraries = [
-        // about JetPack support for Koin: https://github.com/InsertKoinIO/koin/issues/144
-        koin:               "org.koin:koin-android:1.0.0-beta-2",
-        koinViewModels:     "org.koin:koin-android-architecture:$versions.koin",
-        rxJava2:            "io.reactivex.rxjava2:rxjava:2.1.14",
-        rxAndroid:          "io.reactivex.rxjava2:rxandroid:2.0.2",
+        koin:               "org.koin:koin-android:$versions.koin",
+        koinViewModels:     "org.koin:koin-androidx-viewmodel:$versions.koin",
+        rxJava2:            "io.reactivex.rxjava2:rxjava:2.1.17",
+        rxAndroid:          "io.reactivex.rxjava2:rxandroid:2.1.0",
         timber:             "com.jakewharton.timber:timber:4.6.0",
         retrofit:           "com.squareup.retrofit2:retrofit:$versions.retrofit",
         retrofitRxJava2:    "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit",

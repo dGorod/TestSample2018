@@ -81,6 +81,7 @@ dependencies {
     implementation ktxLibraries.viewmodel
 
     implementation libraries.koin
+    implementation libraries.koinViewModels
     implementation libraries.rxJava2
     implementation libraries.rxAndroid
     implementation libraries.timber

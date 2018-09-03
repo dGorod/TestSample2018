@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
-import org.koin.android.architecture.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import ua.dgorod.sample.R
 import ua.dgorod.sample.domain.Const
 import ua.dgorod.sample.extension.longToast

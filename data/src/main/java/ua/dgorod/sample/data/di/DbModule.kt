@@ -1,6 +1,6 @@
 package ua.dgorod.sample.data.di
 
-import org.koin.android.ext.android.androidApplication
+import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module.Module
 import org.koin.dsl.module.module
 import ua.dgorod.sample.data.db.MyDatabase
@@ -13,5 +13,5 @@ import ua.dgorod.sample.data.db.MyDatabase
  */
 val dbModule: Module = module {
 
-    bean { MyDatabase.getInstance(androidApplication()) }
+    single { MyDatabase.getInstance(androidContext()) }
 }

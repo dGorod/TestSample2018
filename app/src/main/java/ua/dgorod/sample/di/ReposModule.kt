@@ -1,6 +1,6 @@
 package ua.dgorod.sample.di
 
-import org.koin.android.architecture.ext.koin.viewModel
+import org.koin.androidx.viewmodel.ext.koin.viewModel
 import org.koin.dsl.module.Module
 import org.koin.dsl.module.module
 import ua.dgorod.sample.data.repository.RepoRepositoryImpl
@@ -21,7 +21,7 @@ val reposModule: Module = module {
         viewModel { MainViewModel(get()) }
     }
 
-    bean { RepoInteractor(get()) }
+    single { RepoInteractor(get()) }
 
-    bean { RepoRepositoryImpl(get(), get()) as RepoRepository }
+    single { RepoRepositoryImpl(get(), get()) as RepoRepository }
 }
