@@ -1,5 +1,5 @@
-[Alpha]<br/>
-Project built using Android Studio Canary and AndroidX alpha artifacts.
+[Notice]<br/>
+Project built using Android Studio Beta and AndroidX alpha artifacts.
 
 
 # Sample app 2018
