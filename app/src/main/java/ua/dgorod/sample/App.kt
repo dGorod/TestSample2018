@@ -1,8 +1,11 @@
 package ua.dgorod.sample
 
 import android.app.Application
+import android.os.Looper
 import com.squareup.leakcanary.LeakCanary
 import com.squareup.picasso.Picasso
+import io.reactivex.android.plugins.RxAndroidPlugins
+import io.reactivex.android.schedulers.AndroidSchedulers
 import org.koin.android.ext.android.startKoin
 import org.koin.android.logger.AndroidLogger
 import org.koin.core.Koin
@@ -38,5 +41,10 @@ class App: Application() {
         }
 
         startKoin(this, appModules)
+
+        // Enable RxAndroid Async API
+        RxAndroidPlugins.setInitMainThreadSchedulerHandler {
+            AndroidSchedulers.from(Looper.getMainLooper(), true)
+        }
     }
 }

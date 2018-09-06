@@ -42,6 +42,7 @@ class RepoRepositoryImpl(
                 )
 
         return db.repositories().getAllWithUsers()
+                .subscribeOn(Schedulers.io())
                 .map { entityMapper.map(it) }
                 .doOnTerminate { networkCall.dispose() }
     }

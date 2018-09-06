@@ -21,7 +21,7 @@ open class MainViewModel(private val repoSource: RepoInteractor): RxViewModel() 
     fun getRepositories(page: Int) {
         disposable.add(repoSource.getAll(page + 1)
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe { loadingStatus.value = true }
+                .doOnSubscribe { loadingStatus.postValue(true) }
                 .doOnNext {
                     loadingStatus.value = false
                     emptyState.value = it.isEmpty()
