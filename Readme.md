@@ -1,5 +1,5 @@
 [Notice]<br/>
-Project built using Android Studio Beta and AndroidX alpha artifacts.
+Project built using AndroidX alpha artifacts.
 
 
 # Sample app 2018
