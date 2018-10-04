@@ -60,12 +60,12 @@ dependencies {
     testImplementation testLibraries.junit
     testImplementation testLibraries.assertj
     testImplementation testLibraries.mockito
-    testImplementation testLibraries.runner
 
     androidTestImplementation testLibraries.runner
     androidTestImplementation testLibraries.rules
     androidTestImplementation testLibraries.archCore
     androidTestImplementation testLibraries.roomRules
+    androidTestImplementation testLibraries.koinTesting
 
     kapt archLibraries.roomCompiler
 }

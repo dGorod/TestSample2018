@@ -17,18 +17,18 @@ ext.config = [
 
         applicationId : "ua.dgorod.example",
         testApplicationId : "ua.dgorod.example.test",
-        testInstrumentationRunner : "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner : "androidx.test.runner.AndroidJUnitRunner"
 ]
 
 ext.versions = [
         // main
         supportLib: "1.0.0-alpha1",
         archLib: "2.0.0-alpha1",
-        koin: "1.0.0-beta-7",
+        koin: "1.0.1",
         retrofit: "2.4.0",
         // testing
         supportTestLib: "1.1.0-alpha1",
-        mockito: "2.13.0",
+        mockito: "2.22.0",
         // developing
         leakCanary: "1.6.1",
         blockCanary: "1.5.0"
