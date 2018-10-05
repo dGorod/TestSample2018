@@ -32,6 +32,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    packagingOptions {
+        pickFirst 'mockito-extensions/org.mockito.plugins.MockMaker'
+    }
 }
 
 dependencies {
@@ -61,6 +65,7 @@ dependencies {
     testImplementation testLibraries.assertj
     testImplementation testLibraries.mockito
 
+    androidTestImplementation testLibraries.mockitoAndroid
     androidTestImplementation testLibraries.runner
     androidTestImplementation testLibraries.rules
     androidTestImplementation testLibraries.archCore

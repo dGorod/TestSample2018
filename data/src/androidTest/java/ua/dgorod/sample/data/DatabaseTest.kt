@@ -40,7 +40,7 @@ class DatabaseTest : KoinTest {
     }
 
     @Test
-    fun test() {
+    fun testDatabase() {
         val testUser = UserEntity(999L, "tester", "http://someurl.com",
                 "http://userurl.com")
 
