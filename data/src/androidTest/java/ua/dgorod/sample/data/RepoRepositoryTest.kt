@@ -27,6 +27,8 @@ import ua.dgorod.sample.domain.model.Repo
 import ua.dgorod.sample.domain.repository.RepoRepository
 
 /**
+ * Test [RepoRepository] using Mockito and Koin. Just sample.
+ *
  * Created by dgorodnytskyi on 10/4/18.
  */
 @RunWith(AndroidJUnit4::class)
