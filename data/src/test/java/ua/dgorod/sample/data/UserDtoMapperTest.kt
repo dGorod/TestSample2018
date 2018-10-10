@@ -22,7 +22,7 @@ import ua.dgorod.sample.data.mapper.UserDtoMapper
 class UserDtoMapperTest {
 
     @Test
-    fun test() {
+    fun testUserDtoMapper() {
         val json = """
             {
               "id": 999,
@@ -36,7 +36,7 @@ class UserDtoMapperTest {
 
         val entity = UserDtoMapper().map(dto)
 
-        with(entity) {
+        with(dto) {
             assertEquals(id, entity.id)
             assertEquals(name, entity.name)
             assertEquals(avatarUrl, entity.avatarUrl)
