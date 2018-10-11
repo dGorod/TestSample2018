@@ -13,6 +13,7 @@ import timber.log.Timber
 import ua.dgorod.sample.data.di.apiModule
 import ua.dgorod.sample.data.di.dbModule
 import ua.dgorod.sample.di.reposModule
+import ua.dgorod.sample.di.viewModelsModule
 
 /**
  * Created by dgorodnytskyi on 6/5/18.
@@ -20,7 +21,7 @@ import ua.dgorod.sample.di.reposModule
 class App: Application() {
 
     companion object {
-        val appModules = listOf(apiModule, dbModule, reposModule)
+        val appModules = listOf(apiModule, dbModule, reposModule, viewModelsModule)
     }
 
     override fun onCreate() {
