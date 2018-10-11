@@ -33,7 +33,7 @@ App is a simple client for GitHub API that shows list of popular repositories ab
   - Use Kotlin 1.2
 
 ### Todos
- - Write more tests
+ - Any ideas?
 
 ### Author
 Dmytro Gorodnytskyi<br/>
