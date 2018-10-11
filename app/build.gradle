@@ -56,6 +56,12 @@ android {
         exclude 'META-INF/rxjava.properties'
         exclude 'pom.xml'
     }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
 }
 
 dependencies {
@@ -91,6 +97,8 @@ dependencies {
     testImplementation testLibraries.assertj
     testImplementation testLibraries.mockito
     testImplementation testLibraries.runner
+    testImplementation testLibraries.koinTesting
+    testImplementation testLibraries.robolectric
 
     androidTestImplementation testLibraries.mockitoAndroid
     androidTestImplementation testLibraries.runner
@@ -100,9 +108,11 @@ dependencies {
 
     debugImplementation devLibraries.leakCanary
     releaseImplementation devLibraries.leakCanaryNoOp
+    testImplementation devLibraries.leakCanaryNoOp
 
     //debugImplementation devLibraries.blockCanary
     //releaseImplementation devLibraries.blockCanaryNoOp
+    //testImplementation devLibraries.blockCanaryNoOp
 
     kapt archLibraries.compiler
     kapt archLibraries.roomCompiler

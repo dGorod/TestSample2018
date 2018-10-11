@@ -82,7 +82,8 @@ ext.testLibraries = [
         espresso:           "androidx.test.espresso:espresso-core:3.1.0-alpha1",
         archCore:           "androidx.arch.core:core-testing:$versions.archLib",
         roomRules:          "androidx.room:room-testing:$versions.archLib",
-        koinTesting:        "org.koin:koin-test:$versions.koin"
+        koinTesting:        "org.koin:koin-test:$versions.koin",
+        robolectric:        "org.robolectric:robolectric:4.0-beta-1"
 ]
 
 ext.devLibraries = [
