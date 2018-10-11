@@ -55,6 +55,7 @@ android {
         exclude 'META-INF/MANIFEST.MF'
         exclude 'META-INF/rxjava.properties'
         exclude 'pom.xml'
+        pickFirst 'mockito-extensions/org.mockito.plugins.MockMaker'
     }
 
     testOptions {
