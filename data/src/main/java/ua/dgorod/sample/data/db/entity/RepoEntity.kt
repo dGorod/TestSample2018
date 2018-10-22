@@ -21,34 +21,34 @@ import java.util.*
 data class RepoEntity(
         @PrimaryKey
         @ColumnInfo(name = Field.id)
-        var id: Long,
+        val id: Long,
 
         @ColumnInfo(name = Field.userId, index = true)
-        var userId: Long,
+        val userId: Long,
 
         @ColumnInfo(name = Field.name)
-        var name: String,
+        val name: String,
 
         @ColumnInfo(name = Field.fullName)
-        var fullName: String,
+        val fullName: String,
 
         @ColumnInfo(name = Field.desc)
-        var desc: String?,
+        val desc: String?,
 
         @ColumnInfo(name = Field.htmlUrl)
-        var htmlUrl: String,
+        val htmlUrl: String,
 
         @ColumnInfo(name = Field.fork)
-        var fork: Boolean,
+        val fork: Boolean,
 
         @ColumnInfo(name = Field.language)
-        var language: String?,
+        val language: String?,
 
         @ColumnInfo(name = Field.stars, index = true)
-        var stars: Int,
+        val stars: Int,
 
         @ColumnInfo(name = Field.createdAt)
-        var createdAt: Date
+        val createdAt: Date
 
 ) {
     object Field {

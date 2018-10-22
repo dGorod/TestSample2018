@@ -8,8 +8,8 @@ import androidx.room.Embedded
 data class RepoInfoEntity(
 
         @Embedded
-        var repo: RepoEntity,
+        val repo: RepoEntity,
 
         @Embedded
-        var user: UserEntity
+        val user: UserEntity
 )

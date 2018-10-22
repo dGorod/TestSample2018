@@ -12,16 +12,16 @@ import ua.dgorod.sample.data.db.Tables
 data class UserEntity(
         @PrimaryKey
         @ColumnInfo(name = Field.id)
-        var id: Long,
+        val id: Long,
 
         @ColumnInfo(name = Field.name)
-        var name: String,
+        val name: String,
 
         @ColumnInfo(name = Field.avatarUrl)
-        var avatarUrl: String?,
+        val avatarUrl: String?,
 
         @ColumnInfo(name = Field.htmlUrl)
-        var htmlUrl: String
+        val htmlUrl: String
 ) {
     object Field {
         private const val prefix = "user_"

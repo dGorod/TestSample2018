@@ -22,8 +22,9 @@ ext.config = [
 
 ext.versions = [
         // main
-        supportLib: "1.0.0-alpha1",
-        archLib: "2.0.0-alpha1",
+        supportLib: "1.0.0",
+        archLib: "2.0.0",
+        room: "2.1.0-alpha01",
         koin: "1.0.1",
         retrofit: "2.4.0",
         // testing
@@ -40,17 +41,15 @@ ext.googleLibraries = [
         annotations:        "androidx.annotation:annotation:$versions.supportLib",
         constraintLayout:   "androidx.constraintlayout:constraintlayout:1.1.2",
         recyclerView:       "androidx.recyclerview:recyclerview:$versions.supportLib",
-        design:             "com.google.android.material:material:$versions.supportLib"
+        design:             "com.google.android.material:material:1.0.0-beta01"
 ]
 
 ext.archLibraries = [
         extensions:         "androidx.lifecycle:lifecycle-extensions:$versions.archLib",
         compiler:           "androidx.lifecycle:lifecycle-compiler:$versions.archLib",
-        paging:             "androidx.paging:paging-runtime:$versions.archLib",
-        pagingRxJava2:      "androidx.paging:paging-rxjava2:$versions.archLib",
-        room:               "androidx.room:room-runtime:$versions.archLib",
-        roomRxJava2:        "androidx.room:room-rxjava2:$versions.archLib",
-        roomCompiler:       "androidx.room:room-compiler:$versions.archLib"
+        room:               "androidx.room:room-runtime:$versions.room",
+        roomRxJava2:        "androidx.room:room-rxjava2:$versions.room",
+        roomCompiler:       "androidx.room:room-compiler:$versions.room"
 ]
 
 ext.ktxLibraries = [
